@@ -1,11 +1,13 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 import { Payment } from './components/Payment';
+import axios from 'axios';
 
 function App() {
 
   function onApprove(data) {
+    // Optional: add logic such as browser redirection or check data object content
     console.log("onApprove");
     console.log(data);
   }

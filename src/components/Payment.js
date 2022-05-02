@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export function Payment({ onApprove }) {
+export function Payment({ paymentAmount = 100, paymentCurrency = "USD", productDescription = "Product Name", onApprove }) {
 
     // const [cryptoPay, setCryptoPay] = useState(window.cryptopay);
     const [paymentId, setPaymentId] = useState("");
@@ -15,12 +15,18 @@ export function Payment({ onApprove }) {
             console.log(paymentId);
             window.cryptopay.Button({
                 createPayment: function (actions) {
-                    return actions.payment.fetch(paymentId)
+                    return actions.payment.fetch(paymentId);
                 },
                 onApprove: function (data, actions) {
                     // Optional: add logic such as browser redirection or check data object content
                     // console.log(data, actions);
                     if (!onApprove) return;
+                    if (!paymentId) return;
+                    axios.get(`https://pay.crypto.com/api/payments/${paymentId}`, {
+                        auth: {
+                            username: 'sk_test_dKS4ndo9FdX3rpKpAfGjTA1L:'
+                        }
+                    });
                     onApprove(data);
                 },
                 defaultLang: 'en-US' // Optional: default language for payment page
@@ -30,13 +36,12 @@ export function Payment({ onApprove }) {
 
     function createPayment() {
         axios.post('https://pay.crypto.com/api/payments', {
-            amount: 1000.00,
-            currency: 'USD',
-            description: 'Product Name'
+            amount: paymentAmount,
+            currency: paymentCurrency,
+            description: productDescription
         }, {
             auth: {
-                username: 'sk_test_dKS4ndo9FdX3rpKpAfGjTA1L',
-                // password: 's00pers3cret'
+                username: 'sk_test_dKS4ndo9FdX3rpKpAfGjTA1L:',
             }
         }).then(response => {
             console.log(response);
@@ -46,7 +51,7 @@ export function Payment({ onApprove }) {
 
     return (
         <div>
-            <div id="pay-button" data-payment-id="PAYMENT_UNIQUE_ID"></div>
+            <div id="pay-button" data-payment-id={{ paymentId }}></div>
         </div>
     )
 }
