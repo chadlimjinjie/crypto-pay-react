@@ -4,9 +4,15 @@ import './App.css';
 import { Payment } from './components/Payment';
 
 function App() {
+
+  function onApprove(data) {
+    console.log("onApprove");
+    console.log(data);
+  }
+
   return (
     <div className="App">
-      <Payment />
+      <Payment onApprove={onApprove} />
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

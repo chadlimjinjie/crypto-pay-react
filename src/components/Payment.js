@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export function Payment() {
+export function Payment({ onApprove }) {
 
     // const [cryptoPay, setCryptoPay] = useState(window.cryptopay);
     const [paymentId, setPaymentId] = useState("");
@@ -19,8 +19,9 @@ export function Payment() {
                 },
                 onApprove: function (data, actions) {
                     // Optional: add logic such as browser redirection or check data object content
-                    console.log(data, actions);
-                    console.log('Payment Approved');
+                    // console.log(data, actions);
+                    if (!onApprove) return;
+                    onApprove(data);
                 },
                 defaultLang: 'en-US' // Optional: default language for payment page
             }).render("#pay-button");
