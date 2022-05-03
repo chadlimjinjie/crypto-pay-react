@@ -21,12 +21,7 @@ export function Payment({ paymentAmount = 100, paymentCurrency = "USD", productD
                     // Optional: add logic such as browser redirection or check data object content
                     // console.log(data, actions);
                     if (!onApprove) return;
-                    if (!paymentId) return;
-                    axios.get(`https://pay.crypto.com/api/payments/${paymentId}`, {
-                        auth: {
-                            username: 'sk_test_dKS4ndo9FdX3rpKpAfGjTA1L:'
-                        }
-                    });
+                    // if (!paymentId) return;
                     onApprove(data);
                 },
                 defaultLang: 'en-US' // Optional: default language for payment page
