@@ -9,7 +9,7 @@ export function Payment({ paymentAmount = 100, paymentCurrency = "USD", productD
     useEffect(() => {
         // var paymentId = document.querySelector('#pay-button').dataset.paymentId;
         if (!paymentId) {
-            createPayment();
+            createPayment(paymentAmount, paymentCurrency, productDescription);
         }
         if (paymentId) {
             console.log(paymentId);
@@ -29,7 +29,7 @@ export function Payment({ paymentAmount = 100, paymentCurrency = "USD", productD
         }
     }, [paymentId]);
 
-    function createPayment() {
+    function createPayment(paymentAmount, paymentCurrency, productDescription) {
         axios.post('https://pay.crypto.com/api/payments', {
             amount: paymentAmount,
             currency: paymentCurrency,
@@ -46,7 +46,7 @@ export function Payment({ paymentAmount = 100, paymentCurrency = "USD", productD
 
     return (
         <div>
-            <div id="pay-button" data-payment-id={{ paymentId }}></div>
+            <div id="pay-button" data-payment-id={paymentId}></div>
         </div>
     )
 }
