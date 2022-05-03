@@ -14,7 +14,7 @@ function App() {
       case 'succeeded':
         // On server side, retrieve the payment and check whether the payment status is succeeded. See all the statuses here.
         // If payment succeeded on server create the order.
-        axios.post('https://api.chadlim1.repl.co/crypto-pay/create-order', {
+        axios.post('https://api.chadlim1.repl.co/api/crypto-pay/create-order', {
           payment_id: data.id,
         });
         break;
