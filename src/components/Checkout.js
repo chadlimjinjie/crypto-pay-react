@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export function Payment({ paymentAmount = 100, paymentCurrency = "USD", productDescription = "Product Name", onApprove }) {
+export function Checkout({ paymentAmount = 100, paymentCurrency = "USD", productDescription = "Product Name", onApprove }) {
 
     // const [cryptoPay, setCryptoPay] = useState(window.cryptopay);
     const [paymentId, setPaymentId] = useState("");
@@ -45,8 +45,6 @@ export function Payment({ paymentAmount = 100, paymentCurrency = "USD", productD
     }
 
     return (
-        <div>
-            <div id="pay-button" data-payment-id={paymentId}></div>
-        </div>
+        <div id="pay-button" data-payment-id={paymentId}></div>
     )
 }

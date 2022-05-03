@@ -1,10 +1,10 @@
 // import logo from './logo.svg';
 import './App.css';
 
-import { Payment } from './components/Payment';
+import { Checkout } from './components/Checkout';
 import axios from 'axios';
 
-function App() {
+export default function App() {
 
   function onApprove(data) {
     // Optional: add logic such as browser redirection or check data object content
@@ -23,23 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      <Payment onApprove={onApprove} />
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
+      <Checkout onApprove={onApprove} />
     </div>
   );
 }
-
-export default App;
