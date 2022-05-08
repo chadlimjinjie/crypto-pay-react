@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import './App.css';
+// import './App.css';
 
 import { Checkout } from './components/Checkout';
 import axios from 'axios';
@@ -22,8 +22,16 @@ export default function App() {
   }
 
   return (
-    <div className="App">
-      <Checkout onApprove={onApprove} />
-    </div>
+
+      <div style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: '100vh',
+      }}>
+
+        <Checkout onApprove={onApprove} />
+      </div>
+
   );
 }
