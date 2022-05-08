@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export function Checkout({ paymentAmount = 100, paymentCurrency = "USD", productDescription = "Product Name", onApprove }) {
+export function Checkout({ username = "sk_test_dKS4ndo9FdX3rpKpAfGjTA1L:", paymentAmount = 100, paymentCurrency = "USD", productDescription = "Product Name", returnUrl = "", cancelUrl = "", onApprove }) {
 
     // const [cryptoPay, setCryptoPay] = useState(window.cryptopay);
     const [paymentId, setPaymentId] = useState("");
@@ -30,13 +30,18 @@ export function Checkout({ paymentAmount = 100, paymentCurrency = "USD", product
     }, [paymentId]);
 
     function createPayment(paymentAmount, paymentCurrency, productDescription) {
-        axios.post('https://pay.crypto.com/api/payments', {
+        let payload = {
             amount: paymentAmount,
             currency: paymentCurrency,
             description: productDescription
-        }, {
+        };
+        if (returnUrl && cancelUrl) {
+            payload.return_url = returnUrl;
+            payload.cancel_url = cancelUrl;
+        }
+        axios.post('https://pay.crypto.com/api/payments', payload, {
             auth: {
-                username: 'sk_test_dKS4ndo9FdX3rpKpAfGjTA1L:',
+                username: username,
             }
         }).then(response => {
             console.log(response);
